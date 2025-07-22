@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ovation Insights | Survey Selector</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+  <link rel="icon" type="image/svg+xml" href="https://www.emerson.com/images/favicon.ico" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      margin: 0;
+    }
+    body {
+      /* Full-screen background image with gradient overlay for readability */
+      background: 
+        linear-gradient(120deg, rgba(15,23,42,0.88) 0%, rgba(49,80,147,0.66) 100%),
+        url('background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      min-height: 100vh;
+    }
+    .content-container {
+      backdrop-filter: blur(3px);
+      background: rgba(255,255,255,0.90);
+      border-radius: 1.5rem;
+      box-shadow: 0 12px 40px 0 rgba(30,64,175,0.13);
+      padding: 2rem 1.5rem;
+      max-width: 54rem;
+      margin: 2rem auto;
+    }
+    .hide { display: none !important; }
+    .survey-iframe {
+      width: 100%;
+      max-width: 850px;
+      height: 70vh;
+      min-height: 420px;
+      border: none;
+      background: white;
+      border-radius: 1rem;
+      box-shadow: 0 8px 32px 0 rgba(30,64,175,0.1);
+      margin: 0 auto;
+      display: block;
+    }
+    @media (max-width: 900px) {
+      .survey-iframe { max-width: 99vw; height: 67vw; min-height: 390px;}
+      .content-container { padding: 1.2rem 0.5rem; }
+    }
+    .no-select { user-select: none; }
+  </style>
+</head>
+<body>
+
+  <div class="content-container">
+
+    <!-- Header -->
+    <div class="w-full flex flex-col items-center mb-6 md:mb-8">
+      <span class="text-4xl md:text-5xl font-extrabold text-blue-700 tracking-wide drop-shadow" style="letter-spacing: 0.05em;">
+        Ovation Insights
+      </span>
+      <span class="mt-1 text-base md:text-lg text-blue-500 tracking-wide">
+        Emerson Ovation Users Group
+      </span>
+    </div>
+
+    <!-- Survey Selector (Home Page) -->
+    <div id="survey-selector" class="w-full flex flex-col items-center">
+      <h1 class="text-2xl md:text-3xl font-bold text-blue-800 text-center mb-2 drop-shadow-sm">
+        Select Your Survey
+      </h1>
+      <p class="text-base md:text-lg text-blue-900 text-center mb-8 max-w-2xl">
+        Tap a survey to begin. Your input shapes the future of Ovation products!
+      </p>
+      <div class="grid gap-6 md:gap-10 md:grid-cols-3 w-full mb-6">
+        <button onclick="showSurvey('ai')" class="no-select bg-white rounded-2xl shadow-xl flex flex-col items-center p-7 md:p-8 border border-blue-100 hover:shadow-2xl active:scale-95 transition-all duration-200 w-full text-left focus:outline-none">
+          <h2 class="text-xl font-semibold text-blue-700 mb-2 text-center">AI Use Cases</h2>
+          <p class="text-gray-600 mb-6 text-center">Share how you're leveraging AI, your challenges, and your future interests. Help us shape the future of Ovation AI.</p>
+          <span class="block text-center bg-blue-700 text-white font-semibold rounded-xl px-6 py-3 text-lg shadow hover:bg-blue-800 focus:bg-blue-900 transition w-full">
+            Take Survey
+          </span>
+        </button>
+        <button onclick="showSurvey('enhancements')" class="no-select bg-white rounded-2xl shadow-xl flex flex-col items-center p-7 md:p-8 border border-blue-100 hover:shadow-2xl active:scale-95 transition-all duration-200 w-full text-left focus:outline-none">
+          <h2 class="text-xl font-semibold text-blue-700 mb-2 text-center">Product Enhancements</h2>
+          <p class="text-gray-600 mb-6 text-center">Suggest features, enhancements, or improvements you’d like to see in the Ovation suite. Your feedback guides our roadmap.</p>
+          <span class="block text-center bg-blue-700 text-white font-semibold rounded-xl px-6 py-3 text-lg shadow hover:bg-blue-800 focus:bg-blue-900 transition w-full">
+            Take Survey
+          </span>
+        </button>
+        <button onclick="showSurvey('profile')" class="no-select bg-white rounded-2xl shadow-xl flex flex-col items-center p-7 md:p-8 border border-blue-100 hover:shadow-2xl active:scale-95 transition-all duration-200 w-full text-left focus:outline-none">
+          <h2 class="text-xl font-semibold text-blue-700 mb-2 text-center">User Profile Exploration</h2>
+          <p class="text-gray-600 mb-6 text-center">Tell us more about your role, experience, and how you interact with Ovation. This helps us better serve your needs.</p>
+          <span class="block text-center bg-blue-700 text-white font-semibold rounded-xl px-6 py-3 text-lg shadow hover:bg-blue-800 focus:bg-blue-900 transition w-full">
+            Take Survey
+          </span>
+        </button>
+      </div>
+      <!-- Direct links in case users prefer to open in a new tab -->
+      <div class="w-full flex flex-col md:flex-row gap-3 items-center justify-center mt-2">
+        <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=XZgG68oGF0qB2mKauZ9lBSfo8oVasetNjJ7FbApkLy5UMkRHNU5EUkNCV1kwNDVQTzgzMlYwMlBXSy4u"
+           target="_blank"
+           class="no-select underline text-blue-800 font-bold px-4 py-2 rounded-lg hover:bg-blue-100 transition">Open AI Use Cases Directly</a>
+        <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=XZgG68oGF0qB2mKauZ9lBSfo8oVasetNjJ7FbApkLy5UMVc3WjJSSENLOEtPODEyUVBBT01URk40OS4u"
+           target="_blank"
+           class="no-select underline text-blue-800 font-bold px-4 py-2 rounded-lg hover:bg-blue-100 transition">Open Product Enhancements Directly</a>
+        <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=XZgG68oGF0qB2mKauZ9lBSfo8oVasetNjJ7FbApkLy5URE9CMjcxM0pNSlYzM0hQSkVMQVZFRkhVTi4u"
+           target="_blank"
+           class="no-select underline text-blue-800 font-bold px-4 py-2 rounded-lg hover:bg-blue-100 transition">Open User Profile Exploration Directly</a>
+      </div>
+    </div>
+
+    <!-- Survey "Pages" -->
+    <div id="survey-ai" class="hide flex flex-col items-center w-full">
+      <button onclick="goHome()" class="mt-2 mb-6 px-5 py-2 rounded-lg bg-blue-200 hover:bg-blue-300 text-blue-900 font-semibold shadow no-select self-start focus:outline-none">
+        &larr; Back to Surveys
+      </button>
+      <h2 class="text-2xl font-bold text-blue-800 mb-4 text-center w-full">Ovation Insights - AI Use Cases</h2>
+      <iframe class="survey-iframe"
+        src="https://forms.office.com/Pages/ResponsePage.aspx?id=XZgG68oGF0qB2mKauZ9lBSfo8oVasetNjJ7FbApkLy5UMkRHNU5EUkNCV1kwNDVQTzgzMlYwMlBXSy4u&embed=true"
+        allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen></iframe>
+      <div class="w-full text-center mt-4">
+        <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=XZgG68oGF0qB2mKauZ9lBSfo8oVasetNjJ7FbApkLy5UMkRHNU5EUkNCV1kwNDVQTzgzMlYwMlBXSy4u"
+           target="_blank"
+           class="no-select underline text-blue-800 font-bold px-4 py-2 rounded-lg hover:bg-blue-100 transition">
+           Can't see the form? Click here to open in a new window
+        </a>
+      </div>
+    </div>
+
+    <div id="survey-enhancements" class="hide flex flex-col items-center w-full">
+      <button onclick="goHome()" class="mt-2 mb-6 px-5 py-2 rounded-lg bg-blue-200 hover:bg-blue-300 text-blue-900 font-semibold shadow no-select self-start focus:outline-none">
+        &larr; Back to Surveys
+      </button>
+      <h2 class="text-2xl font-bold text-blue-800 mb-4 text-center w-full">Ovation Insights - Product Enhancements</h2>
+      <iframe class="survey-iframe"
+        src="https://forms.office.com/Pages/ResponsePage.aspx?id=XZgG68oGF0qB2mKauZ9lBSfo8oVasetNjJ7FbApkLy5UMVc3WjJSSENLOEtPODEyUVBBT01URk40OS4u&embed=true"
+        allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen></iframe>
+      <div class="w-full text-center mt-4">
+        <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=XZgG68oGF0qB2mKauZ9lBSfo8oVasetNjJ7FbApkLy5UMVc3WjJSSENLOEtPODEyUVBBT01URk40OS4u"
+           target="_blank"
+           class="no-select underline text-blue-800 font-bold px-4 py-2 rounded-lg hover:bg-blue-100 transition">
+           Can't see the form? Click here to open in a new window
+        </a>
+      </div>
+    </div>
+
+    <div id="survey-profile" class="hide flex flex-col items-center w-full">
+      <button onclick="goHome()" class="mt-2 mb-6 px-5 py-2 rounded-lg bg-blue-200 hover:bg-blue-300 text-blue-900 font-semibold shadow no-select self-start focus:outline-none">
+        &larr; Back to Surveys
+      </button>
+      <h2 class="text-2xl font-bold text-blue-800 mb-4 text-center w-full">Ovation Insights - User Profile Exploration</h2>
+      <iframe class="survey-iframe"
+        src="https://forms.office.com/Pages/ResponsePage.aspx?id=XZgG68oGF0qB2mKauZ9lBSfo8oVasetNjJ7FbApkLy5URE9CMjcxM0pNSlYzM0hQSkVMQVZFRkhVTi4u&embed=true"
+        allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen></iframe>
+      <div class="w-full text-center mt-4">
+        <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=XZgG68oGF0qB2mKauZ9lBSfo8oVasetNjJ7FbApkLy5URE9CMjcxM0pNSlYzM0hQSkVMQVZFRkhVTi4u"
+           target="_blank"
+           class="no-select underline text-blue-800 font-bold px-4 py-2 rounded-lg hover:bg-blue-100 transition">
+           Can't see the form? Click here to open in a new window
+        </a>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-12 text-blue-600 text-sm opacity-80 text-center w-full">
+      &copy; <span id="year"></span> Emerson Ovation Users Group
+    </footer>
+  </div>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    function showSurvey(key) {
+      document.getElementById('survey-selector').classList.add('hide');
+      document.getElementById('survey-ai').classList.toggle('hide', key !== 'ai');
+      document.getElementById('survey-enhancements').classList.toggle('hide', key !== 'enhancements');
+      document.getElementById('survey-profile').classList.toggle('hide', key !== 'profile');
+      window.scrollTo(0, 0);
+    }
+    function goHome() {
+      document.getElementById('survey-selector').classList.remove('hide');
+      document.getElementById('survey-ai').classList.add('hide');
+      document.getElementById('survey-enhancements').classList.add('hide');
+      document.getElementById('survey-profile').classList.add('hide');
+      window.scrollTo(0, 0);
+    }
+  </script>
+</body>
+</html>
